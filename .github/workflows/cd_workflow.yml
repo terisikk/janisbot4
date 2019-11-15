@@ -1,0 +1,16 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  unit:
+    name: "Test for continuous delivery"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/python
+        with:
+          command: pip install -r requirements.txt

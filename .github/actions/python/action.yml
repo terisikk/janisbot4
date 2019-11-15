@@ -1,0 +1,12 @@
+name: 'Python'
+description: 'Execute generic python actions'
+inputs:
+  command:
+    description: "Command to run"
+    required: true
+    default: 'pip install -r requirements.txt'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.command }}
