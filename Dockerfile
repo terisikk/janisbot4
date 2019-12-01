@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 COPY src src/
 COPY conf conf/
 
-RUN ln -s /var/run/secrets/janisbot.conf /app/conf/janisbot.conf
+RUN ln -s /run/secrets/janisbot.conf /app/conf/janisbot.conf
