@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
-*.conf
+conf/production.conf
+conf/janisbot.conf
 .vscode/
