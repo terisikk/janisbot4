@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  unit:
+  build:
     name: "Test for continuous delivery"
     runs-on: ubuntu-latest
     steps:
@@ -14,3 +14,19 @@ jobs:
       - uses: ./.github/actions/python
         with:
           command: pip install -r requirements.txt
+      - uses: ./.github/actions/python
+        with:
+          command: python -m flake8
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Publish to Registry
+      uses: HurricanKai/Publish-Docker-Github-Action@1.12.1
+      with:
+        name: ${{ secrets.DOCKER_REGISTRY }}/janisbot4
+        registry: ${{ secrets.DOCKER_REGISTRY }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        cache: true

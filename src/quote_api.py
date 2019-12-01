@@ -3,7 +3,7 @@ import json
 
 from configurations import Configurations
 
-configs = Configurations('../conf/test.conf')
+configs = Configurations('/app/conf/janisbot.conf')
 
 QUOTE_API_TOKEN = configs.get('quote_api_token')
 QUOTE_API_URL = configs.get('quote_api_url')
