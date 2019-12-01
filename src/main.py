@@ -21,7 +21,7 @@ async def quotes_command(message: types.Message):
     await message.reply(get_random_quote(), reply=False)
 
 
-@dp.message_handler(regexp='.*:')
+@dp.message_handler(regexp='.*:$')
 async def quotes(message: types.Message):
     await message.reply(get_random_quote(), reply=False)
 
