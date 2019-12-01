@@ -4,7 +4,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from configurations import Configurations
 from quote_api import get_random_quote
 
-configs = Configurations('../conf/test.conf')
+configs = Configurations('/app/conf/janisbot.conf')
 
 TELEGRAM_API_TOKEN = configs.get('telegram_api_token')
 
