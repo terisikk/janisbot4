@@ -34,7 +34,6 @@ jobs:
     name: "Publish to registry"
     needs:
       - build
-      - unit-test
       - static-analysis
     runs-on: ubuntu-latest
     steps:
