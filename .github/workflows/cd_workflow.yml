@@ -7,20 +7,13 @@ on:
 
 jobs:
   build:
-    name: "Build dependencies"
+    name: "Build and tests with coverage"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/python
         with:
           command: pip install -r requirements.txt
-  unit-test:
-    name: "Run unit tests with coverage"
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
       - uses: ./.github/actions/python
         with:
           command: coverage run --source=.\janisbot4 -m unittest discover
