@@ -1,19 +1,6 @@
 import threading
 
 
-def singleton(theclass):
-    instances = {}
-    # theclass._shared_state = {}
-    lock = threading.Lock()
-
-    def get_instance(*args, **kwargs):
-        with lock:
-            if theclass not in instances:
-                instances[theclass] = theclass(*args, **kwargs)
-        return instances[theclass]
-    return get_instance
-
-
 class Singleton(type):
     _instances = {}
     lock = threading.Lock()

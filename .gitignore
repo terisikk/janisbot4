@@ -3,3 +3,5 @@ __pycache__/
 conf/production.conf
 conf/janisbot.conf
 .vscode/
+.coverage
+build/

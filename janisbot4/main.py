@@ -1,8 +1,8 @@
 import logging
 
 from aiogram import Bot, Dispatcher, executor, types
-from configurations import Configurations
-from quote_api import get_random_quote
+from janisbot4.configurations import Configurations
+from janisbot4.quote_api import get_random_quote
 
 configs = Configurations('/app/conf/janisbot.conf')
 
