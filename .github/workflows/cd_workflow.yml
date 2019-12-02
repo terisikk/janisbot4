@@ -7,18 +7,42 @@ on:
 
 jobs:
   build:
-    name: "Test for continuous delivery"
+    name: "Build dependencies"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/python
         with:
           command: pip install -r requirements.txt
+  unit-test:
+    name: "Run unit tests with coverage"
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/python
+        with:
+          command: coverage run --source=.\janisbot4 -m unittest discover
+      - uses: ./.github/actions/python
+        with:
+          command: coverage report -m --fail-under=90
+  static-analysis:
+    name: Static analysis
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v1
       - uses: ./.github/actions/python
         with:
           command: python -m flake8
   publish:
-    needs: build
+    name: "Publish to registry"
+    needs:
+      - build
+      - unit-test
+      - static-analysis
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

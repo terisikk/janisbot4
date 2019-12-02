@@ -1,5 +1,4 @@
 import unittest
-import responses
 
 from janisbot4 import quote_api
 
