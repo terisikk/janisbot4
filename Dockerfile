@@ -10,5 +10,6 @@ RUN pip install -r requirements.txt
 
 COPY janisbot4 janisbot4/
 COPY conf conf/
+COPY main.py main.py
 
 RUN ln -s /run/secrets/janisbot.conf /app/conf/janisbot.conf
