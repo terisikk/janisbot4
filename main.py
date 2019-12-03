@@ -1,12 +1,10 @@
 import logging
 
 from aiogram import Bot, Dispatcher, executor, types
-from janisbot4.configurations import Configurations
+from janisbot4.config import cfg
 from janisbot4.quote_api import get_random_quote
 
-configs = Configurations('/app/conf/janisbot.conf')
-
-TELEGRAM_API_TOKEN = configs.get('telegram_api_token')
+TELEGRAM_API_TOKEN = cfg.get('telegram_api_token')
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -18,7 +16,8 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['quote'])
 async def quotes_command(message: types.Message):
-    await message.reply(get_random_quote(), reply=False)
+    includes = message.get_args().split(' ')
+    await message.reply(get_random_quote(includes), reply=False)
 
 
 @dp.message_handler(regexp='.*:$')
