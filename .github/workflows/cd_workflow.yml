@@ -19,13 +19,13 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
+    env:
+      JANISBOT_CONFIG: /github/workspace/conf/default.conf
     steps:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/python
         with:
           command: coverage run --source=./janisbot4 -m unittest discover
-        env:
-          JANISBOT_CONFIG: /github/workspace/conf/default.conf
       - uses: ./.github/actions/python
         with:
           command: coverage report -m --fail-under=90
