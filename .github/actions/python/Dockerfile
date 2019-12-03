@@ -7,4 +7,6 @@ RUN pip install -r requirements.txt
 COPY entrypoint.sh /
 RUN chmod +x entrypoint.sh
 
+ENV JANISBOT_CONFIG ${GITHUB_WORKSPACE}/conf/default.conf
+
 ENTRYPOINT [ "/entrypoint.sh" ]
