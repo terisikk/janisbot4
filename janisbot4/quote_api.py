@@ -17,15 +17,21 @@ def request(request_str):
     return json.loads(response.text)
 
 
-def get_random_quote(includes=None):
-    req = 'random_quotes?limit=1' + _parse_includes(includes)
+def get_random_quote(arguments=None):
+    req = 'random_quotes?limit=1' + _parse_arguments(arguments)
     response = request(req)
     return response[0].get('quote', EMPTY_RESPONSE) if len(response) > 0 else EMPTY_RESPONSE
 
 
-def _parse_includes(includes=None):
-    if not includes:
+def _parse_arguments(arguments=None):
+    if not arguments:
         return ''
 
-    parsed = [f"quote=ilike.*{urlquote(item, safe='')}*" for item in includes]
-    return '&' + '&'.join(parsed)
+    return '&' + '&'.join([_parse_argument(arg) for arg in arguments])
+
+
+def _parse_argument(argument):
+    if argument.startswith('-'):
+        return f"quote=not.ilike.*{urlquote(argument.lstrip('-'), safe='')}*"
+
+    return f"quote=ilike.*{urlquote(argument, safe='')}*"
