@@ -2,17 +2,7 @@ import pytest
 import janisbot4.handlers as handlers
 
 from janisbot4.config import cfg
-
-
-class MessageStub():
-
-    replied = None
-
-    async def reply(self, message, **kwargs):
-        self.replied = message
-
-    def get_args(self):
-        return 'test is mine'
+from tests.message_stub import MessageStub
 
 
 @pytest.mark.asyncio
