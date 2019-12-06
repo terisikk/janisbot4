@@ -17,6 +17,7 @@ bot = Bot(token=TELEGRAM_API_TOKEN)
 dp = Dispatcher(bot)
 
 chat_id_filter = ChatIdFilter(cfg.get('chat_ids'))
+dp.filters_factory.bind(ChatIdFilter, event_handlers=[dp.message_handlers])
 
 dp.register_message_handler(handlers.quote_command, chat_id_filter, commands=['quote'])
 dp.register_message_handler(handlers.quote_message, chat_id_filter, regexp='.*:$')
