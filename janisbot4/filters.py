@@ -9,5 +9,5 @@ class ChatIdFilter(BoundFilter):
             chat_ids = [chat_ids]
         self.chat_ids = chat_ids
 
-    def check(self, message):
+    async def check(self, message):
         return message.chat.id in self.chat_ids
