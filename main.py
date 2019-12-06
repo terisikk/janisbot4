@@ -18,8 +18,8 @@ dp = Dispatcher(bot)
 
 chat_id_filter = ChatIdFilter(cfg.get('chat_ids'))
 
-dp.register_message_handler(handlers.quote_command, commands=['quote'])
-dp.register_message_handler(handlers.quote_message, regexp='.*:$')
+dp.register_message_handler(handlers.quote_command, chat_id_filter, commands=['quote'])
+dp.register_message_handler(handlers.quote_message, chat_id_filter, regexp='.*:$')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
