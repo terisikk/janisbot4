@@ -1,5 +1,7 @@
 import janisbot4.filters as filters
+
 from tests.message_stub import MessageStub, Chat
+from janisbot4.config import cfg
 
 
 def test_a_single_id_can_be_added():
@@ -23,3 +25,8 @@ def test_filter_works():
 
     assert filt.check(ok_message_stub) is True
     assert filt.check(filtered_message_stub) is False
+
+
+def test_chat_filter_can_be_loaded_from_config():
+    ids = cfg.get('chat_ids')
+    assert ids == ['1', '2', '3']

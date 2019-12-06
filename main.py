@@ -4,6 +4,8 @@ import janisbot4.handlers as handlers
 
 from aiogram import Bot, Dispatcher, executor
 from janisbot4.config import cfg
+from janisbot4.filters import ChatIdFilter
+
 
 TELEGRAM_API_TOKEN = cfg.get('telegram_api_token')
 
@@ -13,6 +15,8 @@ logging.basicConfig(level=int(os.environ.get('JANISBOT_LOGLEVEL', logging.INFO))
 # Initialize bot and dispatcher
 bot = Bot(token=TELEGRAM_API_TOKEN)
 dp = Dispatcher(bot)
+
+chat_id_filter = ChatIdFilter(cfg.get('chat_ids'))
 
 dp.register_message_handler(handlers.quote_command, commands=['quote'])
 dp.register_message_handler(handlers.quote_message, regexp='.*:$')
