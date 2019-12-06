@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/python
         with:
-          command: coverage run --source=./janisbot4 -m unittest discover
+          command: coverage run --source=./janisbot4 -m pytest tests
       - uses: ./.github/actions/python
         with:
           command: coverage report -m --fail-under=90
