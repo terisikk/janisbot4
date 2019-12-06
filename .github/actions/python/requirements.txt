@@ -1,4 +1,6 @@
 flake8
 coverage
 requests
-responses
+requests-mock
+pytest-asyncio
+pytest

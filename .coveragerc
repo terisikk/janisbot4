@@ -2,7 +2,7 @@
 [run]
 branch = True
 omit = 
-    janisbot4/main.py
+    main.py
 
 [report]
 # Regexes for lines to exclude from consideration
