@@ -3,6 +3,7 @@ import os
 import janisbot4.handlers as handlers
 
 from aiogram import Bot, Dispatcher, executor
+from aiogram.dispatcher.filters.builtin import IDFilter
 from janisbot4.config import cfg
 
 
@@ -15,8 +16,10 @@ logging.basicConfig(level=int(os.environ.get('JANISBOT_LOGLEVEL', logging.INFO))
 bot = Bot(token=TELEGRAM_API_TOKEN)
 dp = Dispatcher(bot)
 
-dp.register_message_handler(handlers.quote_command, commands=['quote'])
-dp.register_message_handler(handlers.quote_message, regexp='.*:$')
+idFilter = IDFilter(user_id=cfg.get('user_ids'), chat_id=cfg.get('chat_ids'))
+
+dp.register_message_handler(handlers.quote_command, idFilter, commands=['quote'])
+dp.register_message_handler(handlers.quote_message, idFilter, regexp='.*:$')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
