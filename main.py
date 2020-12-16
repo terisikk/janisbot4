@@ -21,7 +21,7 @@ idFilter = IDFilter(user_id=cfg.get('user_ids'), chat_id=cfg.get('chat_ids'))
 dp.register_message_handler(handlers.quote_command, idFilter, commands=['quote'])
 dp.register_message_handler(handlers.quote_message, idFilter, regexp='.*:$')
 
-dp.register_message_handler(handler.randchoice_command, idFilter, commands=['randchoice'])
+dp.register_message_handler(handlers.randchoice_command, idFilter, commands=['randchoice'])
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
