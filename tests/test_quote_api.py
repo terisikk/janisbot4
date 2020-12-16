@@ -21,7 +21,7 @@ def test_both_includes_and_excludes_can_be_added():
 def test_includes_are_injection_safe():
     includes = ["test&user=root", "test2/../.htaccess"]
     includestr = quote_api._parse_arguments(includes)
-    expected = f"&quote=ilike.*test%26user%3Droot*&quote=ilike.*test2%2F..%2F.htaccess*"
+    expected = "&quote=ilike.*test%26user%3Droot*&quote=ilike.*test2%2F..%2F.htaccess*"
     assert includestr == expected
 
 
