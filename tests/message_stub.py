@@ -8,9 +8,10 @@ class MessageStub():
     def __init__(self):
         self.replied = None
         self.chat = None
+        self.args = 'test is mine'
 
     async def reply(self, message, **kwargs):
         self.replied = message
 
     def get_args(self):
-        return 'test is mine'
+        return self.args

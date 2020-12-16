@@ -38,5 +38,7 @@ async def test_random_choice_is_returned_on_command(requests_mock):
     expected = ['choice1', 'choice2', 'choice3']
 
     message_stub = MessageStub()
+    message_stub.args = expected
+
     await handlers.randchoice_command(message_stub)
     assert message_stub.replied in expected
