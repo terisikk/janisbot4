@@ -42,3 +42,14 @@ async def test_random_choice_is_returned_on_command(requests_mock):
 
     await handlers.randchoice_command(message_stub)
     assert message_stub.replied in expected
+
+
+@pytest.mark.asyncio
+async def test_randchoice_does_not_split_phrases():
+    expected = "This is the choice"
+
+    message_stub = MessageStub()
+    message_stub.args = "'This is the choice'"
+
+    await handlers.randchoice_command(message_stub)
+    assert message_stub.replied in expected

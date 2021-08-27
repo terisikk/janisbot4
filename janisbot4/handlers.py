@@ -1,3 +1,5 @@
+import shlex
+
 from janisbot4.quote_api import get_random_quote
 from random import choice
 
@@ -12,5 +14,5 @@ async def quote_message(message):
 
 
 async def randchoice_command(message):
-    arguments = message.get_args().split(' ')
+    arguments = shlex.split(message.get_args())
     await message.reply(choice(arguments), reply=True)
