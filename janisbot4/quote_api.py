@@ -37,4 +37,3 @@ def _parse_include_exclude_str(argument):
 
 def _parse_arguments(arguments=None):
     return '&' + '&'.join(arguments)
-
