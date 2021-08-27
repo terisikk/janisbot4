@@ -18,20 +18,23 @@ def request(request_str):
 
 
 def get_random_quote(arguments=None):
-    req = 'random_quotes?limit=1' + _parse_arguments(arguments)
+    argumentstr = _parse_include_exclude(arguments)
+    req = 'random_quotes?limit=1' + argumentstr
     response = request(req)
     return response[0].get('quote', EMPTY_RESPONSE) if len(response) > 0 else EMPTY_RESPONSE
 
 
-def _parse_arguments(arguments=None):
-    if not arguments:
-        return ''
-
-    return '&' + '&'.join([_parse_argument(arg) for arg in arguments])
+def _parse_include_exclude(arguments):
+    return '' if not arguments else _parse_arguments([_parse_include_exclude_str(arg) for arg in arguments])
 
 
-def _parse_argument(argument):
+def _parse_include_exclude_str(argument):
     if argument.startswith('-'):
         return f"quote=not.ilike.*{urlquote(argument.lstrip('-'), safe='')}*"
 
     return f"quote=ilike.*{urlquote(argument, safe='')}*"
+
+
+def _parse_arguments(arguments=None):
+    return '&' + '&'.join(arguments)
+
