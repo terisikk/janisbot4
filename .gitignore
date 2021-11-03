@@ -6,3 +6,4 @@ conf/janisbot.conf
 .coverage
 .pytest_cache
 build/
+venv

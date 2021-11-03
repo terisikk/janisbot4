@@ -1,20 +1,34 @@
 import requests
-import json
 
 from urllib.parse import quote as urlquote
 from janisbot4.config import cfg
 
+
 QUOTE_API_TOKEN = cfg.get('quote_api_token')
 QUOTE_API_URL = cfg.get('quote_api_url')
 
-head = {'Authorization': QUOTE_API_TOKEN}
+HEADERS = {'Authorization': QUOTE_API_TOKEN}
 
 EMPTY_RESPONSE = '???'
 
 
+def quotelast(channel: str,
+              quote: str,
+              victim: str = None,
+              adder: str = None):
+    requests.post(f'{QUOTE_API_URL}/rpc/quotelast',
+                  headers=HEADERS,
+                  json=dict(
+                      a_channel=channel,
+                      a_victim=victim,
+                      a_adder=adder,
+                      a_quote=quote,
+                  ))
+
+
 def request(request_str):
-    response = requests.get(f'{QUOTE_API_URL}/{request_str}', headers=head)
-    return json.loads(response.text)
+    response = requests.get(f'{QUOTE_API_URL}/{request_str}', headers=HEADERS)
+    return response.json()
 
 
 def get_random_quote(arguments=None):
