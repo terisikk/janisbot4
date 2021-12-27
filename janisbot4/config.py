@@ -6,5 +6,5 @@ __location__ = os.path.realpath(
 
 cfg = {}
 
-with open(os.environ.get('JANISBOT_CONFIG')) as f:
+with open(os.environ.get('JANISBOT_CONFIG', 'conf/default.conf')) as f:
     cfg = json.loads(f.read())

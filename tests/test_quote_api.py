@@ -45,3 +45,23 @@ def test_no_exception_with_empty_response(requests_mock):
     response = quote_api.get_random_quote()
 
     assert excpected == response
+
+
+def test_quotelast_can_be_called(requests_mock):
+    url = cfg.get('quote_api_url') + '/rpc/quotelast'
+
+    adapter = requests_mock.post(url)
+    quote_api.quotelast(
+        "test_channel",
+        "test quote",
+        "test_victim",
+        "test_adder"
+    )
+
+    assert adapter.called
+    assert adapter.last_request.json() == {
+        'a_adder': 'test_adder',
+        'a_channel': 'test_channel',
+        'a_quote': 'test quote',
+        'a_victim': 'test_victim',
+    }

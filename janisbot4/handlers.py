@@ -3,8 +3,6 @@ import shlex
 from janisbot4.quote_api import get_random_quote, quotelast
 from random import choice
 
-from aiogram.types.message import Message
-
 
 async def quote_command(message):
     arguments = message.get_args().split(' ')
@@ -20,7 +18,7 @@ async def randchoice_command(message):
     await message.reply(choice(arguments), reply=True)
 
 
-async def quotelast_command(message: Message):
+async def quotelast_command(message):
     """
     Save the message replied to.
     """
@@ -34,9 +32,4 @@ async def quotelast_command(message: Message):
 
     channel = message.chat.title or message.chat.full_name
 
-    quotelast(
-        channel=channel,
-        quote=quote,
-        victim=victim,
-        adder=adder
-    )
+    quotelast(channel, quote, victim, adder)

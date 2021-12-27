@@ -12,10 +12,7 @@ HEADERS = {'Authorization': QUOTE_API_TOKEN}
 EMPTY_RESPONSE = '???'
 
 
-def quotelast(channel: str,
-              quote: str,
-              victim: str = None,
-              adder: str = None):
+def quotelast(channel, quote, victim=None, adder=None):
     requests.post(f'{QUOTE_API_URL}/rpc/quotelast',
                   headers=HEADERS,
                   json=dict(
