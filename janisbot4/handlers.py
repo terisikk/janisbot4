@@ -1,6 +1,7 @@
 import shlex
 
 from janisbot4.quote_api import get_random_quote, quotelast
+from janisbot4.filters import filter_lorrem, filter_quote_message
 from random import choice
 
 
@@ -31,5 +32,8 @@ async def quotelast_command(message):
     adder = message.from_user.username
 
     channel = message.chat.title or message.chat.full_name
+
+    if filter_quote_message(quote) or filter_lorrem(quote):
+        return
 
     quotelast(channel, quote, victim, adder)
