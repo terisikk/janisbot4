@@ -1,6 +1,6 @@
 import logging
 import os
-import janisbot4.handlers as handlers
+from janisbot4.plugins import quote_command, quote_message, quotelast_command, randchoice_command
 
 from aiogram import Bot, Dispatcher, executor
 from aiogram.dispatcher.filters.builtin import IDFilter
@@ -18,10 +18,10 @@ dp = Dispatcher(bot)
 
 idFilter = IDFilter(user_id=cfg.get('user_ids'), chat_id=cfg.get('chat_ids'))
 
-dp.register_message_handler(handlers.quote_command, idFilter, commands=['quote'])
-dp.register_message_handler(handlers.quotelast_command, idFilter, commands=['quotelast'])
-dp.register_message_handler(handlers.quote_message, idFilter, regexp='.*:$')
-dp.register_message_handler(handlers.randchoice_command, idFilter, commands=['randchoice'])
+quote_command.register(dp)
+quote_message.register(dp)
+quotelast_command.register(dp)
+randchoice_command.register(dp)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
