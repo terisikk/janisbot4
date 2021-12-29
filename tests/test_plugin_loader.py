@@ -1,4 +1,3 @@
-import pytest
 from janisbot4.plugin_loader import load_plugin, load_plugins, register_plugins
 
 from tests.dispatcher_stub import DispatcherStub
