@@ -1,16 +1,10 @@
 import shlex
 
 from random import choice
-from aiogram.dispatcher.filters.builtin import IDFilter
-
-from janisbot4.config import cfg
 
 
-idFilter = IDFilter(user_id=cfg.get('user_ids'), chat_id=cfg.get('chat_ids'))
-
-
-def register(dispatcher):
-    dispatcher.register_message_handler(index, idFilter, commands=['randchoice'])
+def register(dispatcher, idfilter=None):
+    dispatcher.register_message_handler(index, idfilter, commands=['randchoice'])
 
 
 async def index(message):

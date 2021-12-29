@@ -1,14 +1,8 @@
-from aiogram.dispatcher.filters.builtin import IDFilter
-
 from janisbot4.quote_api import quotelast
-from janisbot4.config import cfg
 
 
-idFilter = IDFilter(user_id=cfg.get('user_ids'), chat_id=cfg.get('chat_ids'))
-
-
-def register(dispatcher):
-    dispatcher.register_message_handler(index, idFilter, commands=['quotelast'])
+def register(dispatcher, idfilter=None):
+    dispatcher.register_message_handler(index, idfilter, commands=['quotelast'])
 
 
 async def index(message):

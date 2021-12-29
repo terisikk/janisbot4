@@ -3,14 +3,6 @@ import janisbot4.plugins.quote_command as quote_command
 
 from janisbot4.config import cfg
 from tests.message_stub import MessageStub
-from tests.dispatcher_stub import DispatcherStub
-
-
-def test_command_can_be_registered():
-    dispatcher = DispatcherStub()
-
-    quote_command.register(dispatcher)
-    assert dispatcher.called
 
 
 @pytest.mark.asyncio
