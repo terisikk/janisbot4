@@ -1,8 +1,7 @@
 from janisbot4.quote_api import quotelast
 
 
-def register(dispatcher, idfilter=None):
-    dispatcher.register_message_handler(index, idfilter, commands=['quotelast'])
+COMMANDS = ['quotelast']
 
 
 async def index(message):

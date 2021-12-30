@@ -1,8 +1,7 @@
 from janisbot4.quote_api import get_random_quote
 
 
-def register(dispatcher, idfilter=None):
-    dispatcher.register_message_handler(index, idfilter, regexp='.*:$')
+REGEXP = '.*:$'
 
 
 async def index(message):

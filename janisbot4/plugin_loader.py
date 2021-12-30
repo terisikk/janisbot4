@@ -4,7 +4,11 @@ import importlib
 
 def register_plugins(plugins, dispatcher, idfilter):
     for plugin in plugins:
-        plugin.register(dispatcher, idfilter)
+        commands = plugin.COMMANDS if hasattr(plugin, "COMMANDS") else None
+        regexp = plugin.REGEXP if hasattr(plugin, "REGEXP") else None
+        content_types = plugin.CONTENT_TYPES if hasattr(plugin, "CONTENT_TYPES") else None
+
+        dispatcher.register_message_handler(plugin.index, idfilter, commands=commands, regexp=regexp, content_types=content_types)
 
 
 def load_plugins(module):

@@ -3,8 +3,7 @@ import shlex
 from random import choice
 
 
-def register(dispatcher, idfilter=None):
-    dispatcher.register_message_handler(index, idfilter, commands=['randchoice'])
+COMMANDS = ['randchoice']
 
 
 async def index(message):
