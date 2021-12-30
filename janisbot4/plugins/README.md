@@ -4,8 +4,11 @@
 Just add a new file and define the following function:
 
 ```
-def index(message):
+async def index(message):
     YOUR_CODE
+    ...
+    await message.reply("whatever you want to post", reply=False)
+
 ```
 
 also, to register the trigger for your function, define any of these:
