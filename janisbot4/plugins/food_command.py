@@ -1,6 +1,7 @@
 import requests
-from datetime import datetime
 
+from datetime import datetime
+from collections import namedtuple
 from bs4 import BeautifulSoup
 
 
@@ -24,33 +25,39 @@ async def get_food(restaurant_name):
     replytext = DEFAULT_REPLY
 
     if restaurant:
-        replytext = restaurant["filter"](requests.get(restaurant["url"]).text)
+        replytext = restaurant.parser(requests.get(restaurant.url))
 
     return replytext
 
 
-def get_finnish_day_name():
-    weekday = datetime.today().weekday()
-    return WEEKDAYS[weekday]
+def automaatio_parser(response):
+    text = parse_response(response)
 
-
-def automaatio_filter(text):
     try:
         soup = BeautifulSoup(text, features="html.parser")
         container = soup.find("div", id="pgc-41-1-0")
-        weekday = get_finnish_day_name().capitalize()
 
-        food_today = container.find("h4", text=weekday).find_next_sibling().text
-        return food_today
+        weekday = get_finnish_day_name().capitalize()
+        food_today = container.find("h4", text=weekday).find_next_sibling()
+
+        return food_today.text
     except Exception:
         return DEFAULT_REPLY
 
 
+def parse_response(response):
+    return response.text if hasattr(response, "text") else response
+
+
+def get_finnish_day_name():
+    return WEEKDAYS[datetime.today().weekday()]
+
+
 WEEKDAYS = ["maanantai", "tiistai", "keskiviikko", "torstai", "perjantai", "lauantai", "sunnuntai"]
 
+Restaurant = namedtuple("Restaurant", ["url", "parser"])
 RESTAURANTS = {
-    "automaatio": {
-        "url": "https://www.aaltocatering.fi/automaatiotielounas/",
-        "filter": automaatio_filter
-    }
+    "automaatio": Restaurant(
+        "https://www.aaltocatering.fi/automaatiotielounas/",
+        automaatio_parser)
 }

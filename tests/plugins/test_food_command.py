@@ -37,7 +37,7 @@ async def test_default_reply_on_nonexisting_restaurant(requests_mock, restaurant
 
 
 def test_default_reply_on_faulty_automaatio_content(requests_mock):
-    reply = food_command.automaatio_filter("empty text")
+    reply = food_command.automaatio_parser("empty text")
     assert reply == food_command.DEFAULT_REPLY
 
 
@@ -54,7 +54,7 @@ Pizzabuffet
 Päivän kasvisruoka tilataan keittiöstä:
 Punajuuri-aurajuustovuoka L,G"""
 
-        food = food_command.automaatio_filter(TEST_DATA)
+        food = food_command.automaatio_parser(TEST_DATA)
         assert food == expected
 
 
@@ -66,8 +66,6 @@ TEST_DATA = """
 <div class="textwidget">
 <p>Lounas tarjolla klo 10.30-13.00<br>
 Tervetuloa!</p>
-<p>Hyvät asiakkaat. Kysymme koronapassin ravintolassamme.</p>
-<p>Olemme suljettuna 23.12.2021-2.1.2022 välisen ajan.</p>
 <h4>Maanantai</h4>
 <p>Kermainen lihapata L,G<br>
 Paistettua kalaa L,G<br>
@@ -89,11 +87,6 @@ Aurajuusto-kukkakaalikeittoa L,G (*Suomi)<br>
 Pizzabuffet<br>
 Päivän kasvisruoka tilataan keittiöstä:<br>
 Kasviscurrya M,G</p>
-<p>Hyvää Joulua.</p>
-<p>L=laktoositon M=maidoton G=gluteeniton VL=vähälaktoosinen VEG=vegaani<br>
-(*) Lihan alkuperämaa</p>
-<p>Hävikkiruoan vähentämiseksi myymme lounaalta jäänyttä ruokaa Automaatiotien lounasravintolassa hintaan 8,00€/kg klo 13.00-13:30<br>
-Lounaslistan muutokset ovat mahdollisia.</p>
 </div>
 </div>
 </div>
