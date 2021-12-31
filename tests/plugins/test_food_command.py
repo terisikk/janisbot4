@@ -26,10 +26,11 @@ async def test_food_list_is_returned_on_command(requests_mock):
         assert message.replied != food_command.DEFAULT_REPLY
 
 
+@pytest.mark.parametrize("restaurant", ["nonexisting", ""])
 @pytest.mark.asyncio
-async def test_default_reply_on_nonexisting_restaurant(requests_mock):
+async def test_default_reply_on_nonexisting_restaurant(requests_mock, restaurant):
     message = MessageStub()
-    message.args = "nonexisting"
+    message.args = restaurant
 
     await food_command.index(message)
     assert message.replied == food_command.DEFAULT_REPLY

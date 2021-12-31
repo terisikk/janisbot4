@@ -13,7 +13,7 @@ async def index(message):
     arguments = message.get_args().strip()
     replytext = DEFAULT_REPLY
 
-    if len(arguments) > 0:
+    if arguments != "":
         replytext = await get_food(arguments)
 
     await message.reply(replytext, reply=False)
