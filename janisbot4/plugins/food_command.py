@@ -10,17 +10,23 @@ DEFAULT_REPLY = "Ravintolasi on perseestä!"
 
 
 async def index(message):
-    arguments = message.get_args().split(' ')
-    restaurant = RESTAURANTS.get(arguments[0], None)
+    arguments = message.get_args().strip()
+    replytext = DEFAULT_REPLY
 
-    replytext = await get_food(restaurant) if restaurant else DEFAULT_REPLY
+    if len(arguments) > 0:
+        replytext = await get_food(arguments)
 
     await message.reply(replytext, reply=False)
 
 
-async def get_food(restaurant):
-    text = requests.get(restaurant["url"]).text
-    return restaurant["filter"](text)
+async def get_food(restaurant_name):
+    restaurant = RESTAURANTS.get(restaurant_name, None)
+    replytext = DEFAULT_REPLY
+
+    if restaurant:
+        replytext = restaurant["filter"](requests.get(restaurant["url"]).text)
+
+    return replytext
 
 
 def get_finnish_day_name():
