@@ -16,7 +16,7 @@ dp = Dispatcher(bot)
 
 idfilter = IDFilter(user_id=cfg.get('user_ids'), chat_id=cfg.get('chat_ids'))
 
-plugin_loader.register_plugins(plugin_loader.load_plugins("janisbot4/plugins"))
+plugin_loader.register_plugins(plugin_loader.load_plugins("janisbot4/plugins"), dp, idfilter)
 
 
 if __name__ == '__main__':
