@@ -28,7 +28,8 @@ async def get_food(restaurant_name):
     if restaurant:
         try:
             replytext = restaurant.parser(requests.get(restaurant.url()))
-        except Exception:
+        except Exception as e:
+            print(e)
             return DEFAULT_REPLY
 
     return replytext
@@ -68,7 +69,7 @@ def parse_response_text(response):
 
 
 def parse_response_json(response):
-    return response.json if hasattr(response, "json") else json.loads(response)
+    return response.json() if hasattr(response, "json") else json.loads(response)
 
 
 def get_finnish_day_name():

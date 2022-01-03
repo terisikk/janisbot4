@@ -8,7 +8,7 @@ from tests.message_stub import MessageStub
 
 
 @pytest.mark.asyncio
-async def test_food_list_is_returned_on_command(requests_mock):
+async def test_automaatio_list_is_returned_on_command(requests_mock):
     with patch('janisbot4.plugins.food_command.date') as mock_date:
         mock_date.today.return_value = date(2021, 12, 28)
         mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
@@ -23,6 +23,23 @@ async def test_food_list_is_returned_on_command(requests_mock):
         await food_command.index(message)
 
         assert food_command.date.today() == date(2021, 12, 28)
+        assert message.replied != food_command.DEFAULT_REPLY
+
+
+@pytest.mark.asyncio
+async def test_galaksi_list_is_returned_on_command(requests_mock):
+    with patch('janisbot4.plugins.food_command.date') as mock_date:
+        mock_date.today.return_value = date(2021, 12, 28)
+        mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
+
+        url = "https://www.sodexo.fi/ruokalistat/output/daily_json/121/" + str(mock_date.today())
+
+        requests_mock.get(url, text=TEST_DATA_GALAKSI)
+
+        message = MessageStub()
+        message.args = "galaksi"
+
+        await food_command.index(message)
         assert message.replied != food_command.DEFAULT_REPLY
 
 
