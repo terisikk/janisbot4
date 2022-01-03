@@ -46,14 +46,13 @@ def automaatio_parser(response):
     return food_today.text
 
 
-
 def galaksi_parser(response):
     jsondata = parse_response_json(response)
 
     food_today = ""
 
     for _, value in jsondata["courses"].items():
-        title = value.get("title_fi", "") 
+        title = value.get("title_fi", "")
         dietcodes = value.get("dietcodes", "")
 
         if dietcodes != "":
