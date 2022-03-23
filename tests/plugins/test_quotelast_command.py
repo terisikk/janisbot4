@@ -33,6 +33,16 @@ async def test_quotelast_api_is_not_called_without_reply(requests_mock):
     assert adapter.called is False
 
 
+def test_quotelast_uses_full_name_if_not_username():
+    message_stub = MessageStub()
+    message_stub.from_user.username = None
+
+    username = quotelast_command.get_user_name(message_stub)
+
+    assert username is not None
+    assert username == message_stub.from_user.full_name
+
+
 @pytest.mark.parametrize('text', ["[LÖR] filter me", "filter me:"])
 @pytest.mark.asyncio
 async def test_quotelast_is_filtered_by_rules(requests_mock, text):

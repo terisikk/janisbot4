@@ -13,8 +13,8 @@ async def index(message):
         return
 
     quote = reply.text
-    victim = reply.from_user.username
-    adder = message.from_user.username
+    victim = get_user_name(reply)
+    adder = get_user_name(message)
 
     channel = message.chat.title or message.chat.full_name
 
@@ -22,6 +22,10 @@ async def index(message):
         return
 
     quotelast(channel, quote, victim, adder)
+
+
+def get_user_name(message):
+    return message.from_user.username if message.from_user.username else message.from_user.full_name
 
 
 def filter_lorrem(text):

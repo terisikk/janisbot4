@@ -24,6 +24,7 @@ class UserStub():
 
     def __init__(self):
         self.username = 'Test User'
+        self.full_name = 'Test User Full'
 
 
 class ChatStub():
