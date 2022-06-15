@@ -35,6 +35,13 @@ def get_random_quote(arguments=None):
     return response[0].get('quote', EMPTY_RESPONSE) if len(response) > 0 else EMPTY_RESPONSE
 
 
+def get_quote_metadata(quote):
+    req = "irc_quote?quote=eq." + quote + "&limit=1&select=user:user_id(name),adder:adder_id(name),channel:channel_id(name),timestamp"
+    response = request(req)
+
+    return response[0] if len(response) > 0 else EMPTY_RESPONSE
+
+
 def _parse_include_exclude(arguments):
     return '' if not arguments else _parse_arguments([_parse_include_exclude_str(arg) for arg in arguments])
 
