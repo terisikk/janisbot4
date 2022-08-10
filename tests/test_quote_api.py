@@ -72,7 +72,7 @@ def test_quotelast_can_be_called(requests_mock):
 
 
 def test_quote_user_can_be_parsed_from_response(requests_mock):
-    test_quote = 'test_quote'
+    test_quote = "test_quote"
     response = [{
         "timestamp": "2012-04-14T01:46:07",
         "user": {

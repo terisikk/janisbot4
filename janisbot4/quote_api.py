@@ -36,7 +36,7 @@ def get_random_quote(arguments=None):
 
 
 def get_quote_metadata(quote):
-    req = "irc_quote?quote=eq." + quote + "&limit=1&select=user:user_id(name),adder:adder_id(name),channel:channel_id(name),timestamp"
+    req = "irc_quote?quote=eq." + urlquote(quote, safe='') + "&limit=1&select=user:user_id(name),adder:adder_id(name),channel:channel_id(name),timestamp"
     response = request(req)
 
     return response[0] if len(response) > 0 else EMPTY_RESPONSE
