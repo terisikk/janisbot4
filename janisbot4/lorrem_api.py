@@ -19,4 +19,4 @@ def request(request_str):
 def get_random_lorr():
     req = 'markovpy'
     response = request(req)
-    return response.get('lorrem', EMPTY_RESPONSE) if len(response) > 0 else EMPTY_RESPONSE
+    return response.get('lorrem', EMPTY_RESPONSE)[0] if len(response) > 0 else EMPTY_RESPONSE

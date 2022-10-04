@@ -8,7 +8,7 @@ from tests.message_stub import MessageStub
 @pytest.mark.asyncio
 async def test_lorr_is_returned_on_command(requests_mock):
     expected = 'test lorr'
-    reply = {'lorrem': expected}
+    reply = {'lorrem': [expected]}
     url = cfg.get('lorrem_api_url') + '/markovpy'
 
     requests_mock.get(url, json=reply)

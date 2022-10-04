@@ -4,7 +4,7 @@ from janisbot4.config import cfg
 
 def test_lorrem_can_be_parsed_from_response(requests_mock):
     test_quote = 'test lorr'
-    response = {'lorrem': test_quote}
+    response = {'lorrem': [test_quote]}
     url = cfg.get('lorrem_api_url') + '/markovpy'
 
     adapter = requests_mock.get(url, json=response)
