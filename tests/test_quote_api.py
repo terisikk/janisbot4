@@ -1,6 +1,6 @@
 import re
 
-from janisbot4 import quote_api
+from janisbot4.api import quote_api
 from janisbot4.config import cfg
 
 

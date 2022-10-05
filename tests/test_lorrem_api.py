@@ -1,4 +1,4 @@
-from janisbot4 import lorrem_api
+from janisbot4.api import lorrem_api
 from janisbot4.config import cfg
 
 
