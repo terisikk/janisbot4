@@ -44,6 +44,7 @@ jobs:
           command: python -m flake8
   publish:
     name: "Publish to registry"
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     needs:
       - build
       - unit-test
@@ -59,4 +60,3 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         cache: true
-      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
