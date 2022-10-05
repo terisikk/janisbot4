@@ -1,4 +1,4 @@
-from janisbot4.quote_api import get_quote_metadata
+from janisbot4.api.quote_api import get_quote_metadata
 
 
 COMMANDS = ['blame']

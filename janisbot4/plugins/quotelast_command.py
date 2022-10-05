@@ -1,4 +1,4 @@
-from janisbot4.quote_api import quotelast
+from janisbot4.api.quote_api import quotelast
 
 
 COMMANDS = ['quotelast']
