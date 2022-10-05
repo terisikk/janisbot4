@@ -18,3 +18,5 @@ COMMANDS = ["telegram command that should call your function"]
 REGEXP = "regexp for messages that are not commands but should trigger"
 CONTENT_TYPES = ["aiogram content types that trigger it"]
 ```
+
+
