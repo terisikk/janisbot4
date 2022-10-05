@@ -8,7 +8,9 @@ For developing your own applications, especially this bot, remember to add Autho
 
 For developing new features to JanisBot that use QuoteAPI, you can use `quote_api.py` as an example. You can use the provided token for testing in local dev env, but keep in mind that the bot uses a production API key that has full CRUD permissions. 
 
-Please do not commit API keys or endpoint urls directly to this public repository. Use configuration files instead. The production config has for example the following useful items:
+> :warning: Please do not commit API keys or endpoint urls directly to this public repository!
+
+Use configuration files instead. The production config has for example the following useful items:
 
 * quote_api_token
 * quote_api_url
