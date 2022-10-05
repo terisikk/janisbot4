@@ -24,7 +24,7 @@ async def test_total_count_is_returned_on_command(requests_mock):
 async def test_user_count_is_returned_on_command(requests_mock):
     expected = 100
     reply = [{'count': expected}]
-    url = cfg.get('quote_api_url') + '/quotes_per_user?name=eq.Test%20User'
+    url = cfg.get('quote_api_url') + '/quotes_per_user?name=ilike.Test%20User'
 
     requests_mock.get(url, json=reply)
 

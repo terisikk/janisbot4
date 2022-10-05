@@ -45,7 +45,7 @@ def get_quote_metadata(quote):
 def get_quote_count(user=None):
     req = "quote_count"
     if user:
-        req = "quotes_per_user?limit=1&name=eq." + urlquote(user, safe='')
+        req = "quotes_per_user?limit=1&name=ilike." + urlquote(user, safe='')
 
     response = request(req)
 
