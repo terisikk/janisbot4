@@ -42,6 +42,16 @@ def get_quote_metadata(quote):
     return response[0] if len(response) > 0 else EMPTY_RESPONSE
 
 
+def get_quote_count(user=None):
+    req = "quote_count"
+    if user:
+        req = "quotes_per_user?limit=1&name=eq." + urlquote(user, safe='')
+
+    response = request(req)
+
+    return response[0]['count'] if len(response) > 0 else EMPTY_RESPONSE
+
+
 def _parse_include_exclude(arguments):
     return '' if not arguments else _parse_arguments([_parse_include_exclude_str(arg) for arg in arguments])
 
