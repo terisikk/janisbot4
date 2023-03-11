@@ -6,7 +6,7 @@ from tests.message_stub import MessageStub
 
 @pytest.mark.asyncio
 async def test_random_choice_is_returned_on_command(requests_mock):
-    expected = ['choice1', 'choice2', 'choice3']
+    expected = ["choice1", "choice2", "choice3"]
 
     message_stub = MessageStub()
     message_stub.args = "choice1 choice2 choice3"

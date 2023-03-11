@@ -1,7 +1,7 @@
 from janisbot4.api.lorrem_api import get_random_lorr
 
 
-COMMANDS = ['lorr']
+COMMANDS = ["lorr"]
 
 
 async def index(message):

@@ -7,9 +7,9 @@ from tests.message_stub import MessageStub
 
 @pytest.mark.asyncio
 async def test_quote_is_returned_on_message(requests_mock):
-    expected = 'test quote'
-    reply = [{'quote': expected}]
-    url = cfg.get('quote_api_url') + '/random_quotes?limit=1'
+    expected = "test quote"
+    reply = [{"quote": expected}]
+    url = cfg.get("quote_api_url") + "/random_quotes?limit=1"
 
     requests_mock.get(url, json=reply)
 

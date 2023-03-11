@@ -8,13 +8,13 @@ from tests.message_stub import MessageStub
 @pytest.mark.asyncio
 async def test_total_count_is_returned_on_command(requests_mock):
     sata = 100
-    reply = [{'count': sata}]
-    url = cfg.get('quote_api_url') + '/quote_count'
+    reply = [{"count": sata}]
+    url = cfg.get("quote_api_url") + "/quote_count"
 
     requests_mock.get(url, json=reply)
 
     message_stub = MessageStub()
-    message_stub.args = ''
+    message_stub.args = ""
 
     await quotecunt_command.index(message_stub)
     assert message_stub.replied == sata
@@ -23,13 +23,13 @@ async def test_total_count_is_returned_on_command(requests_mock):
 @pytest.mark.asyncio
 async def test_user_count_is_returned_on_command(requests_mock):
     expected = 100
-    reply = [{'count': expected}]
-    url = cfg.get('quote_api_url') + '/quotes_per_user?name=ilike.Test%20User'
+    reply = [{"count": expected}]
+    url = cfg.get("quote_api_url") + "/quotes_per_user?name=ilike.Test%20User"
 
     requests_mock.get(url, json=reply)
 
     message_stub = MessageStub()
-    message_stub.args = 'Test User'
+    message_stub.args = "Test User"
 
     await quotecunt_command.index(message_stub)
     assert message_stub.replied == expected

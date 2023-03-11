@@ -8,7 +8,7 @@ from tests.message_stub import MessageStub
 
 @pytest.mark.asyncio
 async def test_quotelast_api_is_called_from_handler(requests_mock):
-    url = cfg.get('quote_api_url') + '/rpc/quotelast'
+    url = cfg.get("quote_api_url") + "/rpc/quotelast"
 
     message_stub = MessageStub()
     message_stub.reply_to_message = MessageStub()
@@ -22,7 +22,7 @@ async def test_quotelast_api_is_called_from_handler(requests_mock):
 
 @pytest.mark.asyncio
 async def test_quotelast_api_is_not_called_without_reply(requests_mock):
-    url = cfg.get('quote_api_url') + '/rpc/quotelast'
+    url = cfg.get("quote_api_url") + "/rpc/quotelast"
 
     message_stub = MessageStub()
     message_stub.reply_to_message = None
@@ -43,10 +43,10 @@ def test_quotelast_uses_full_name_if_not_username():
     assert username == message_stub.from_user.full_name
 
 
-@pytest.mark.parametrize('text', ["[LÖR] filter me", "filter me:"])
+@pytest.mark.parametrize("text", ["[LÖR] filter me", "filter me:"])
 @pytest.mark.asyncio
 async def test_quotelast_is_filtered_by_rules(requests_mock, text):
-    url = cfg.get('quote_api_url') + '/rpc/quotelast'
+    url = cfg.get("quote_api_url") + "/rpc/quotelast"
 
     message_stub = MessageStub()
     message_stub.reply_to_message = MessageStub()

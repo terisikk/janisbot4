@@ -9,7 +9,7 @@ from tests.message_stub import MessageStub
 
 @pytest.mark.asyncio
 async def test_automaatio_list_is_returned_on_command(requests_mock):
-    with patch('janisbot4.plugins.food_command.date') as mock_date:
+    with patch("janisbot4.plugins.food_command.date") as mock_date:
         mock_date.today.return_value = date(2021, 12, 28)
         mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
 
@@ -28,7 +28,7 @@ async def test_automaatio_list_is_returned_on_command(requests_mock):
 
 @pytest.mark.asyncio
 async def test_galaksi_list_is_returned_on_command(requests_mock):
-    with patch('janisbot4.plugins.food_command.date') as mock_date:
+    with patch("janisbot4.plugins.food_command.date") as mock_date:
         mock_date.today.return_value = date(2021, 12, 28)
         mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
 
@@ -65,7 +65,7 @@ async def test_default_reply_on_faulty_content(requests_mock):
 
 
 def test_automaatio_restaurant_list_can_be_parsed():
-    with patch('janisbot4.plugins.food_command.date') as mock_date:
+    with patch("janisbot4.plugins.food_command.date") as mock_date:
         mock_date.today.return_value = date(2021, 12, 28)
         mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
 

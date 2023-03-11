@@ -1,7 +1,7 @@
 from janisbot4.api.quote_api import get_random_quote
 
 
-REGEXP = '.*:$'
+REGEXP = ".*:$"
 
 
 async def index(message):

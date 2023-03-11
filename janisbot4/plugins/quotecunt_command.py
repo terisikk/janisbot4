@@ -1,7 +1,7 @@
 from janisbot4.api.quote_api import get_quote_count
 
 
-COMMANDS = ['quotecunt']
+COMMANDS = ["quotecunt"]
 
 
 async def index(message):

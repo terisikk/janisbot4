@@ -1,15 +1,14 @@
 from collections import namedtuple
 
-Chat = namedtuple('Chat', 'id')
+Chat = namedtuple("Chat", "id")
 
 
-class MessageStub():
-
+class MessageStub:
     def __init__(self):
         self.replied = None
         self.chat = None
-        self.args = 'test is mine'
-        self.text = 'this is a test'
+        self.args = "test is mine"
+        self.text = "this is a test"
         self.from_user = UserStub()
         self.chat = ChatStub()
 
@@ -20,15 +19,13 @@ class MessageStub():
         return self.args
 
 
-class UserStub():
-
+class UserStub:
     def __init__(self):
-        self.username = 'Test User'
-        self.full_name = 'Test User Full'
+        self.username = "Test User"
+        self.full_name = "Test User Full"
 
 
-class ChatStub():
-
+class ChatStub:
     def __init__(self):
-        self.title = 'Test Chat'
-        self.full_name = 'Full test chat name'
+        self.title = "Test Chat"
+        self.full_name = "Full test chat name"

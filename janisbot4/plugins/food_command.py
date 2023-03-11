@@ -6,7 +6,7 @@ from collections import namedtuple
 from bs4 import BeautifulSoup
 
 
-COMMANDS = ['food']
+COMMANDS = ["food"]
 
 DEFAULT_REPLY = "Ravintolasi on perseestä!"
 
@@ -59,7 +59,7 @@ def galaksi_parser(response):
         if dietcodes != "":
             dietcodes = f" ({dietcodes})"
 
-        food_today += title + dietcodes + '\n'
+        food_today += title + dietcodes + "\n"
 
     return food_today
 
@@ -80,10 +80,8 @@ WEEKDAYS = ["maanantai", "tiistai", "keskiviikko", "torstai", "perjantai", "laua
 
 Restaurant = namedtuple("Restaurant", ["url", "parser"])
 RESTAURANTS = {
-    "automaatio": Restaurant(
-        lambda: "https://www.aaltocatering.fi/automaatiotielounas/",
-        automaatio_parser),
+    "automaatio": Restaurant(lambda: "https://www.aaltocatering.fi/automaatiotielounas/", automaatio_parser),
     "galaksi": Restaurant(
-        lambda: "https://www.sodexo.fi/ruokalistat/output/daily_json/121/" + str(date.today()),
-        galaksi_parser)
+        lambda: "https://www.sodexo.fi/ruokalistat/output/daily_json/121/" + str(date.today()), galaksi_parser
+    ),
 }

@@ -3,7 +3,7 @@ import shlex
 from random import choice
 
 
-COMMANDS = ['randchoice']
+COMMANDS = ["randchoice"]
 
 
 async def index(message):

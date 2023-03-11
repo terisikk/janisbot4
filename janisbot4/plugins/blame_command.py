@@ -1,7 +1,7 @@
 from janisbot4.api.quote_api import get_quote_metadata
 
 
-COMMANDS = ['blame']
+COMMANDS = ["blame"]
 
 
 async def index(message):

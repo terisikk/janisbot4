@@ -8,7 +8,9 @@ def register_plugins(plugins, dispatcher, idfilter):
         regexp = plugin.REGEXP if hasattr(plugin, "REGEXP") else None
         content_types = plugin.CONTENT_TYPES if hasattr(plugin, "CONTENT_TYPES") else None
 
-        dispatcher.register_message_handler(plugin.index, idfilter, commands=commands, regexp=regexp, content_types=content_types)
+        dispatcher.register_message_handler(
+            plugin.index, idfilter, commands=commands, regexp=regexp, content_types=content_types
+        )
 
 
 def load_plugins(module):
@@ -26,11 +28,11 @@ def load_plugin(source, path):
 
 
 def source_to_module(source):
-    if not source.startswith('.'):
-        return '.' + source
+    if not source.startswith("."):
+        return "." + source
 
     return source
 
 
 def path_to_package(path):
-    return path.replace('/', '.')
+    return path.replace("/", ".")
