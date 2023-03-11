@@ -1,0 +1,16 @@
+**/__pycache__/
+*.pyc
+.vscode/
+.coverage
+.pytest_cache/
+build/
+venv
+.venv
+.env
+.ruff_cache/
+.pip_cache/
+.git/
+Dockerfile
+.devcontainer/
+.github/
+.gitignore
