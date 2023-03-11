@@ -6,4 +6,6 @@ conf/janisbot.conf
 .coverage
 .pytest_cache
 build/
-venv
+.venv
+.ruff_cache
+
