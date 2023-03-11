@@ -10,13 +10,16 @@ on:
 
 jobs:
   build:
-    name: "Build dependencies"
+    name: "Install and cache requirements"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./.github/actions/python
+      - uses: actions/checkout@v3
+      - run: pipx install poetry==1.4.0
+      - uses: actions/setup-python@v4
         with:
-          command: pip install -r requirements.txt
+          python-version: '3.11'
+          cache: 'poetry'
+      - run: poetry install && poetry build
   unit-test:
     name: "Run unit tests with coverage"
     needs:
@@ -25,23 +28,43 @@ jobs:
     env:
       JANISBOT_CONFIG: /github/workspace/conf/default.conf
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./.github/actions/python
+      - uses: actions/checkout@v3
+      - run: pipx install poetry==1.4.0
+      - uses: actions/setup-python@v4
         with:
-          command: coverage run --source=./janisbot4 -m pytest tests
-      - uses: ./.github/actions/python
-        with:
-          command: coverage report -m --fail-under=90
+          python-version: '3.11'
+          cache: 'poetry'
+      - run: poetry install
+      - run: poetry run coverage run
+      - run: poetry run coverage report
   static-analysis:
-    name: Static analysis
-    runs-on: ubuntu-latest
+    name: "Static analysis with ruff"
     needs:
       - build
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./.github/actions/python
+      - uses: actions/checkout@v3
+      - run: pipx install poetry==1.4.0
+      - uses: actions/setup-python@v4
         with:
-          command: python -m flake8
+          python-version: '3.11'
+          cache: 'poetry'
+      - run: poetry install
+      - run: poetry run ruff check .
+  formatting:
+    name: "Check formatting with black"
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pipx install poetry==1.4.0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'poetry'
+      - run: poetry install
+      - run: poetry run black --check .
   publish:
     name: "Publish to registry"
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -49,6 +72,7 @@ jobs:
       - build
       - unit-test
       - static-analysis
+      - formatting
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1

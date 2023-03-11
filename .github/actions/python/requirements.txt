@@ -1,8 +1,0 @@
-flake8
-coverage
-requests
-requests-mock
-pytest-asyncio
-pytest
-aiogram
-beautifulsoup4
