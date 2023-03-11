@@ -42,7 +42,7 @@ def automaatio_parser(response):
     container = soup.find("div", id="pgc-41-1-0")
 
     weekday = get_finnish_day_name().capitalize()
-    food_today = container.find("h4", text=weekday).find_next_sibling()
+    food_today = container.find("h4", string=weekday).find_next_sibling()
 
     return food_today.text
 

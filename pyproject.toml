@@ -13,6 +13,12 @@ exclude = [
   ".github"
 ]
 
+[tool.pytest]
+filterwarnings = [
+    "ignore:::backports",
+    "ignore::DeprecationWarning:aiohttp.*:"
+]
+
 [tool.coverage.run]
 source = ["janisbot4"]
 branch = true
