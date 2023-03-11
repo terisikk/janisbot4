@@ -27,6 +27,4 @@ COPY --from=builder /app/dist .
 COPY docker-entrypoint.sh main.py ./
 COPY conf ./conf
 
-RUN ln -s /run/secrets/janisbot.conf /app/conf/janisbot.conf
-
 CMD ["./docker-entrypoint.sh"]
