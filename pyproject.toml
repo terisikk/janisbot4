@@ -14,10 +14,7 @@ exclude = [
 ]
 
 [tool.pytest]
-filterwarnings = [
-    "ignore:::backports",
-    "ignore::DeprecationWarning:aiohttp.*:"
-]
+
 
 [tool.coverage.run]
 source = ["janisbot4"]
@@ -35,6 +32,7 @@ exclude_lines = [
     # Don't complain if non-runnable code isn't run:
     "if __name__ == .__main__.:",
 ]
+
 [tool.poetry]
 name = "janisbot4"
 version = "0.1.0"
