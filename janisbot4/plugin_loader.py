@@ -1,6 +1,6 @@
 import pkgutil
-import importlib
 import logging
+import importlib.util
 
 
 def register_plugins(plugins, dispatcher, idfilter):
@@ -21,25 +21,17 @@ def register_plugins(plugins, dispatcher, idfilter):
 
 
 def load_plugins(module):
-    return [load_plugin(name, module) for _, name, _ in pkgutil.iter_modules([module])]
+    return [load_plugin(finder, name) for finder, name, _ in pkgutil.iter_modules([module])]
 
 
-def load_plugin(source, path):
+def load_plugin(finder, name):
     try:
-        return importlib.import_module(source_to_module(source), path_to_package(path))
+        spec = finder.find_spec(name)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
     except Exception as e:
         logging.debug(e)
-        logging.error(f"Could not load plugin {source}")
+        logging.error(f"Could not load plugin {name}")
 
     return None
-
-
-def source_to_module(source):
-    if not source.startswith("."):
-        return "." + source
-
-    return source
-
-
-def path_to_package(path):
-    return path.replace("/", ".")
