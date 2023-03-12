@@ -10,6 +10,8 @@ COMMANDS = ["food"]
 
 DEFAULT_REPLY = "Ravintolasi on perseestä!"
 
+REQUEST_TIMEOUT = 60
+
 
 async def index(message):
     arguments = message.get_args().strip()
@@ -27,7 +29,7 @@ async def get_food(restaurant_name):
 
     if restaurant:
         try:
-            replytext = restaurant.parser(requests.get(restaurant.url()))
+            replytext = restaurant.parser(requests.get(restaurant.url(), timeout=REQUEST_TIMEOUT))
         except Exception as e:
             print(e)
             return DEFAULT_REPLY

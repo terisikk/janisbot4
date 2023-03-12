@@ -9,10 +9,11 @@ LORREM_API_TOKEN = cfg.get("lorrem_api_token")
 EMPTY_RESPONSE = "???"
 
 HEADERS = {"Authorization": LORREM_API_TOKEN}
+REQUEST_TIMEOUT = 10
 
 
 def request(request_str):
-    response = requests.get(f"{LORREM_API_URL}/{request_str}", headers=HEADERS)
+    response = requests.get(f"{LORREM_API_URL}/{request_str}", headers=HEADERS, timeout=REQUEST_TIMEOUT)
     return response.json()
 
 

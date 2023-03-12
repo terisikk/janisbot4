@@ -11,6 +11,8 @@ HEADERS = {"Authorization": QUOTE_API_TOKEN}
 
 EMPTY_RESPONSE = "???"
 
+REQUEST_TIMEOUT = 60
+
 
 def quotelast(channel, quote, victim=None, adder=None):
     requests.post(
@@ -22,11 +24,12 @@ def quotelast(channel, quote, victim=None, adder=None):
             a_adder=adder,
             a_quote=quote,
         ),
+        timeout=REQUEST_TIMEOUT,
     )
 
 
 def request(request_str):
-    response = requests.get(f"{QUOTE_API_URL}/{request_str}", headers=HEADERS)
+    response = requests.get(f"{QUOTE_API_URL}/{request_str}", headers=HEADERS, timeout=REQUEST_TIMEOUT)
     return response.json()
 
 
