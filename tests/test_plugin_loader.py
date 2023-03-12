@@ -3,6 +3,12 @@ from janisbot4.plugin_loader import load_plugin, load_plugins, register_plugins
 from tests.dispatcher_stub import DispatcherStub
 
 
+def test_plugins_path_is_correct():
+    import janisbot4.plugins
+
+    assert str.endswith(janisbot4.plugins.__path__[0], "janisbot4/plugins")
+
+
 def test_a_plugin_can_be_loaded():
     plugin = load_plugin(".quote_command", "janisbot4.plugins")
 
