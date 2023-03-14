@@ -13,7 +13,7 @@ env:
   TELEGRAM_API_DEV_HASH: ${{ secrets.TELEGRAM_API_DEV_HASH }}
   TELEGRAM_CLIENT_SESSION: ${{ secrets.TELEGRAM_CLIENT_SESSION }}
   TELEGRAM_TEST_DC_IP: ${{ secrets.TELEGRAM_TEST_DC_IP }}
-  TELEGRAM_TEST_DC_NUMBER: ${{ secrets.TELEGRAM_TEST_DC_NUMBER }}
+  TELEGRAM_TEST_DC_NUMBER: ${{ vars.TELEGRAM_TEST_DC_NUMBER }}
   TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
   QUOTE_API_TOKEN: ${{ secrets.QUOTE_API_TOKEN }}
   QUOTE_API_URL: ${{ secrets.QUOTE_API_URL }}
@@ -21,7 +21,7 @@ env:
   LORREM_API_TOKEN: ${{ secrets.LORREM_API_TOKEN }}
   CHAT_IDS: ${{ secrets.CHAT_IDS }}
   USER_IDS: ${{ secrets.USER_IDS }}
-  MODE: ${{ secrets.MODE }}
+  MODE: ${{ vars.MODE }}
 
 jobs:
   build:
