@@ -13,9 +13,10 @@ USER_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS") else None
 CHAT_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS") else None
 PRODUCTION = "prod"
 TEST = "test"
+LOGGER_NAME = "janisbot"
 
-
-logging.basicConfig(level=int(os.environ.get("JANISBOT_LOGLEVEL", logging.DEBUG)))
+botlogger = logging.getLogger(LOGGER_NAME)
+botlogger.setLevel(int(os.environ.get("JANISBOT_LOGLEVEL", logging.DEBUG)))
 
 
 def get_api_server(mode):
