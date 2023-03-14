@@ -26,8 +26,8 @@ def get_api_server(mode):
         return TelegramAPIServer.from_base("https://api.telegram.org/")
     else:
         return TelegramAPIServer(
-            base=f"https://api.telegram.org/bot{{token}}/test/{{method}}",
-            file=f"https://api.telegram.org/file/bot{{token}}/test/{{path}}",
+            base="https://api.telegram.org/bot{token}/test/{method}",
+            file="https://api.telegram.org/file/bot{token}/test/{path}",
         )
 
 

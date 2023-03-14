@@ -5,7 +5,7 @@ from tests.unit.message_stub import MessageStub
 
 
 @pytest.mark.asyncio
-async def test_random_choice_is_returned_on_command(requests_mock):
+async def test_random_choice_is_returned_on_command():
     expected = ["choice1", "choice2", "choice3"]
 
     message_stub = MessageStub()

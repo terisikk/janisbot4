@@ -15,7 +15,7 @@ async def test_automaatio_list_is_returned_on_command(requests_mock):
 
         url = "https://www.aaltocatering.fi/automaatiotielounas/"
 
-        requests_mock.get(url, text=TEST_DATA_AUTOMAATIO)
+        requests_mock.get(url, text=TEST_DATA_AUTOMAATIO)  # nosec B113
 
         message = MessageStub()
         message.args = "automaatio"
@@ -34,7 +34,7 @@ async def test_galaksi_list_is_returned_on_command(requests_mock):
 
         url = "https://www.sodexo.fi/ruokalistat/output/daily_json/121/" + str(mock_date.today())
 
-        requests_mock.get(url, text=TEST_DATA_GALAKSI)
+        requests_mock.get(url, text=TEST_DATA_GALAKSI)  # nosec B113
 
         message = MessageStub()
         message.args = "galaksi"
@@ -57,7 +57,7 @@ async def test_default_reply_on_nonexisting_restaurant(requests_mock, restaurant
 async def test_default_reply_on_faulty_content(requests_mock):
     url = "https://www.aaltocatering.fi/automaatiotielounas/"
 
-    requests_mock.get(url, text="empty data")
+    requests_mock.get(url, text="empty data")  # nosec B113
 
     replytext = await food_command.get_food("automaatio")
 

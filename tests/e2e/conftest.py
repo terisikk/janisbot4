@@ -1,7 +1,6 @@
 import pytest_asyncio
 import socket
 import asyncio
-import logging
 
 import janisbot4.bot
 
@@ -49,7 +48,7 @@ async def conv(bot, telegram_client):
     async with telegram_client.conversation("@TestJanisBot", timeout=30, max_messages=100) as conv:
         await conv.send_message(f"Starting E2E tests from {socket.gethostname()}...")
         yield conv
-        await conv.send_message(f"E2E tests done.")
+        await conv.send_message("E2E tests done.")
 
 
 # Default event_loop fixture has "function" scope and will

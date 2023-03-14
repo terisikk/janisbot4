@@ -11,7 +11,7 @@ async def test_lorr_is_returned_on_command(requests_mock):
     reply = {"lorrem": [expected]}
     url = cfg.get("LORREM_API_URL") + "/markovpy"
 
-    requests_mock.get(url, json=reply)
+    requests_mock.get(url, json=reply)  # nosec B113
 
     message_stub = MessageStub()
 

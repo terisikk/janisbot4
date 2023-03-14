@@ -11,7 +11,7 @@ async def test_quote_is_returned_on_command(requests_mock):
     reply = [{"quote": expected}]
     url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
-    requests_mock.get(url, json=reply)
+    requests_mock.get(url, json=reply)  # nosec B113
 
     message_stub = MessageStub()
 
