@@ -9,7 +9,7 @@ from tests.unit.message_stub import MessageStub
 async def test_lorr_is_returned_on_command(requests_mock):
     expected = "test lorr"
     reply = {"lorrem": [expected]}
-    url = cfg.get("lorrem_api_url") + "/markovpy"
+    url = cfg.get("LORREM_API_URL") + "/markovpy"
 
     requests_mock.get(url, json=reply)
 

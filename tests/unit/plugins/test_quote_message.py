@@ -9,7 +9,7 @@ from tests.unit.message_stub import MessageStub
 async def test_quote_is_returned_on_message(requests_mock):
     expected = "test quote"
     reply = [{"quote": expected}]
-    url = cfg.get("quote_api_url") + "/random_quotes?limit=1"
+    url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
     requests_mock.get(url, json=reply)
 

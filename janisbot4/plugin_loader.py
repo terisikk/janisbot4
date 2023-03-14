@@ -1,6 +1,7 @@
 import pkgutil
 import logging
 import importlib.util
+import janisbot4.bot
 
 
 def register_plugins(plugins, dispatcher, idfilter):
@@ -17,7 +18,7 @@ def register_plugins(plugins, dispatcher, idfilter):
 
         registered_plugins.append(plugin.__name__)
 
-    logging.info("Registered plugins: " + str(registered_plugins))
+    logging.getLogger(janisbot4.bot.LOGGER_NAME).info("Registered plugins: " + str(registered_plugins))
 
 
 def load_plugins(module):
@@ -31,7 +32,7 @@ def load_plugin(finder, name):
         spec.loader.exec_module(module)
         return module
     except Exception as e:
-        logging.debug(e)
-        logging.error(f"Could not load plugin {name}")
+        logging.getLogger(janisbot4.bot.LOGGER_NAME).debug(e)
+        logging.getLogger(janisbot4.bot.LOGGER_NAME).error(f"Could not load plugin {name}")
 
     return None

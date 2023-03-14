@@ -9,7 +9,7 @@ from tests.unit.message_stub import MessageStub
 async def test_total_count_is_returned_on_command(requests_mock):
     sata = 100
     reply = [{"count": sata}]
-    url = cfg.get("quote_api_url") + "/quote_count"
+    url = cfg.get("QUOTE_API_URL") + "/quote_count"
 
     requests_mock.get(url, json=reply)
 
@@ -24,7 +24,7 @@ async def test_total_count_is_returned_on_command(requests_mock):
 async def test_user_count_is_returned_on_command(requests_mock):
     expected = 100
     reply = [{"count": expected}]
-    url = cfg.get("quote_api_url") + "/quotes_per_user?name=ilike.Test%20User"
+    url = cfg.get("QUOTE_API_URL") + "/quotes_per_user?name=ilike.Test%20User"
 
     requests_mock.get(url, json=reply)
 

@@ -4,8 +4,8 @@ from urllib.parse import quote as urlquote
 from janisbot4.config import cfg
 
 
-QUOTE_API_TOKEN = cfg.get("quote_api_token")
-QUOTE_API_URL = cfg.get("quote_api_url")
+QUOTE_API_TOKEN = cfg.get("QUOTE_API_TOKEN")
+QUOTE_API_URL = cfg.get("QUOTE_API_URL")
 
 HEADERS = {"Authorization": QUOTE_API_TOKEN}
 

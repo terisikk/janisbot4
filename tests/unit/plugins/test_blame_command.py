@@ -12,7 +12,7 @@ async def test_metadata_is_returned_on_command(requests_mock):
     reply = [
         {"timestamp": "2012-04-14T01:46:07", "user": {"name": "Test User"}, "adder": None, "channel": {"name": "#test"}}
     ]
-    url = re.compile(cfg.get("quote_api_url") + "/irc_quote.*")
+    url = re.compile(cfg.get("QUOTE_API_URL") + "/irc_quote.*")
 
     adapter = requests_mock.get(url, json=reply)
 
@@ -28,7 +28,7 @@ async def test_metadata_is_returned_on_command(requests_mock):
 
 @pytest.mark.asyncio
 async def test_blame_api_is_not_called_without_reply(requests_mock):
-    url = re.compile(cfg.get("quote_api_url") + "/irc_quote.*")
+    url = re.compile(cfg.get("QUOTE_API_URL") + "/irc_quote.*")
 
     message_stub = MessageStub()
     message_stub.reply_to_message = None

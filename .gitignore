@@ -1,11 +1,11 @@
 __pycache__/
 *.pyc
-conf/production.conf
-conf/janisbot.conf
+conf/*
+!conf/*_template.env
 .vscode/
 .coverage
 .pytest_cache
 build/
 .venv
 .ruff_cache
-
+.env

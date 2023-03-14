@@ -12,10 +12,10 @@ For developing new features to JanisBot that use QuoteAPI, you can use `quote_ap
 
 Use configuration files instead. The production config has for example the following useful items:
 
-* quote_api_token
-* quote_api_url
+* QUOTE_API_TOKEN
+* QUOTE_API_URL
 
-You can use them in code for example this way: `QUOTE_API_TOKEN = cfg.get('quote_api_token')`.
+You can use them in code for example this way: `QUOTE_API_TOKEN = cfg.get('QUOTE_API_TOKEN')`.
 
 # LorremAPI
 
@@ -23,5 +23,5 @@ LorremAPI does not currently have swagger documentation, and it uses basic authe
 
 The following options are in production configuration:
 
-* lorrem_api_url
-* lorrem_api_token
+* LORREM_API_URL
+* LORREM_API_TOKEN

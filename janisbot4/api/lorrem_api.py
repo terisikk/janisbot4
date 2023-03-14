@@ -3,8 +3,8 @@ import requests
 from janisbot4.config import cfg
 
 
-LORREM_API_URL = cfg.get("lorrem_api_url")
-LORREM_API_TOKEN = cfg.get("lorrem_api_token")
+LORREM_API_URL = cfg.get("LORREM_API_URL")
+LORREM_API_TOKEN = cfg.get("LORREM_API_TOKEN")
 
 EMPTY_RESPONSE = "???"
 

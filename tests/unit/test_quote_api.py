@@ -30,7 +30,7 @@ def test_includes_are_injection_safe():
 def test_quote_can_be_parsed_from_response(requests_mock):
     test_quote = "test_quote"
     response = [{"quote": test_quote}]
-    url = cfg.get("quote_api_url") + "/random_quotes?limit=1"
+    url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
     adapter = requests_mock.get(url, json=response)
     response = quote_api.get_random_quote()
@@ -42,7 +42,7 @@ def test_quote_can_be_parsed_from_response(requests_mock):
 def test_no_exception_with_empty_response(requests_mock):
     excpected = "???"
     response = [{}]
-    url = cfg.get("quote_api_url") + "/random_quotes?limit=1"
+    url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
     adapter = requests_mock.get(url, json=response)
     response = quote_api.get_random_quote()
@@ -52,7 +52,7 @@ def test_no_exception_with_empty_response(requests_mock):
 
 
 def test_quotelast_can_be_called(requests_mock):
-    url = cfg.get("quote_api_url") + "/rpc/quotelast"
+    url = cfg.get("QUOTE_API_URL") + "/rpc/quotelast"
 
     adapter = requests_mock.post(url)
     quote_api.quotelast("test_channel", "test quote", "test_victim", "test_adder")
@@ -72,7 +72,7 @@ def test_quote_user_can_be_parsed_from_response(requests_mock):
         {"timestamp": "2012-04-14T01:46:07", "user": {"name": "Test User"}, "adder": None, "channel": {"name": "#test"}}
     ]
 
-    url = re.compile(cfg.get("quote_api_url") + "/irc_quote.*")
+    url = re.compile(cfg.get("QUOTE_API_URL") + "/irc_quote.*")
 
     adapter = requests_mock.get(url, json=response)
     response = quote_api.get_quote_metadata(test_quote)
