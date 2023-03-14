@@ -64,7 +64,7 @@ jobs:
           python-version: '3.11'
           cache: 'poetry'
       - run: poetry install
-      - run: poetry run bandit -c pyproject.toml -r janisbot4
+      - run: poetry run bandit -c pyproject.toml -r .
   formatting:
     name: "Check formatting with black"
     needs:
@@ -79,8 +79,8 @@ jobs:
           cache: 'poetry'
       - run: poetry install
       - run: poetry run black --check .
-  publish:
-    name: "Publish to registry"
+  end-to-end:
+    name: "End to end tests"
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     needs:
       - build
@@ -90,7 +90,22 @@ jobs:
       - formatting
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
+    - run: pipx install poetry==1.4.0
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'poetry'
+    - run: poetry install
+    - run: poetry run pytest tests/e2e/
+  publish:
+    name: "Publish to registry"
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs:
+    - end-to-end
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
     - name: Publish to Registry
       uses: HurricanKai/Publish-Docker-Github-Action@1.12.1
       with:
