@@ -31,15 +31,10 @@ def get_api_server(mode):
         )
 
 
-def create_bot(mode, loop=None):
+def create_bot(mode):
     bot = Bot(token=TELEGRAM_API_TOKEN, server=get_api_server(mode))
 
-    dp = None
-
-    if loop:
-        dp = Dispatcher(bot, loop=loop)
-    else:
-        dp = Dispatcher(bot)
+    dp = Dispatcher(bot)
 
     idfilter = IDFilter(user_id=USER_IDS, chat_id=CHAT_IDS)
 
