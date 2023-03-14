@@ -89,6 +89,7 @@ jobs:
       - security-analysis
       - formatting
     runs-on: ubuntu-latest
+    environment: Continuous Delivery
     steps:
     - uses: actions/checkout@v3
     - run: pipx install poetry==1.4.0
@@ -104,6 +105,7 @@ jobs:
     needs:
     - end-to-end
     runs-on: ubuntu-latest
+    environment: Continuous Delivery
     steps:
     - uses: actions/checkout@v3
     - name: Publish to Registry
