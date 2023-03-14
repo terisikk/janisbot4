@@ -9,8 +9,8 @@ from janisbot4.config import cfg
 from janisbot4 import plugin_loader, plugins
 
 TELEGRAM_API_TOKEN = cfg.get("TELEGRAM_API_TOKEN")
-USER_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS") else None
-CHAT_IDS = cfg.get("CHAT_IDS").split(",") if cfg.get("USER_IDS") else None
+USER_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS", None) else None
+CHAT_IDS = cfg.get("CHAT_IDS").split(",") if cfg.get("CHAT_IDS", None) else None
 PRODUCTION = "prod"
 TEST = "test"
 LOGGER_NAME = "janisbot"
