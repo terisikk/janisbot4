@@ -9,16 +9,13 @@ from janisbot4.config import cfg
 from janisbot4 import plugin_loader, plugins
 
 TELEGRAM_API_TOKEN = cfg.get("TELEGRAM_API_TOKEN")
-LOGGER_NAME = "aiogram-logger"
 USER_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS") else None
 CHAT_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS") else None
-
-
-bot_logger = logging.getLogger(LOGGER_NAME)
-logging.basicConfig(level=int(os.environ.get("JANISBOT_LOGLEVEL", logging.DEBUG)))
-
 PRODUCTION = "prod"
 TEST = "test"
+
+
+logging.basicConfig(level=int(os.environ.get("JANISBOT_LOGLEVEL", logging.DEBUG)))
 
 
 def get_api_server(mode):
