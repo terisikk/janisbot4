@@ -15,8 +15,7 @@ PRODUCTION = "prod"
 TEST = "test"
 LOGGER_NAME = "janisbot"
 
-botlogger = logging.getLogger(LOGGER_NAME)
-botlogger.setLevel(int(os.environ.get("JANISBOT_LOGLEVEL", logging.DEBUG)))
+logging.basicConfig(level=int(os.environ.get("JANISBOT_LOGLEVEL", logging.DEBUG)))
 
 
 def get_api_server(mode):
@@ -33,6 +32,8 @@ def create_bot(mode):
     bot = Bot(token=TELEGRAM_API_TOKEN, server=get_api_server(mode))
 
     dp = Dispatcher(bot)
+
+    print(USER_IDS, CHAT_IDS)
 
     idfilter = IDFilter(user_id=USER_IDS, chat_id=CHAT_IDS)
 
