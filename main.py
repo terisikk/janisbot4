@@ -8,5 +8,5 @@ load_dotenv(dotenv_path=os.environ.get("JANISBOT_CONFIG", "conf/prod_template.en
 from janisbot4 import bot, config  # noqa: E402
 
 if __name__ == "__main__":
-    dispatcher = bot.create_bot(config.cfg.get("MODE"))
+    dispatcher, _ = bot.create_bot(config.cfg.get("MODE"))
     executor.start_polling(dispatcher, skip_updates=True)
