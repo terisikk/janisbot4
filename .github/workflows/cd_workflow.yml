@@ -25,6 +25,7 @@ jobs:
     needs:
       - build
     runs-on: ubuntu-latest
+    environment: Continuous Delivery
     env:
       JANISBOT_CONFIG: ${{ github.workspace }}/conf/default.conf
     steps:
