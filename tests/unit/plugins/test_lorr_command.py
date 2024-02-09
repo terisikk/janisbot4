@@ -1,6 +1,6 @@
 import pytest
-import janisbot4.plugins.lorr_command as lorr_command
 
+import janisbot4.plugins.lorr_command as lorr_command
 from janisbot4.config import cfg
 from tests.unit.message_stub import MessageStub
 
@@ -11,7 +11,7 @@ async def test_lorr_is_returned_on_command(requests_mock):
     reply = {"lorrem": [expected]}
     url = cfg.get("LORREM_API_URL") + "/markovpy"
 
-    requests_mock.get(url, json=reply)  # nosec B113
+    requests_mock.get(url, json=reply)
 
     message_stub = MessageStub()
 

@@ -1,7 +1,8 @@
-import pytest
 import re
-import janisbot4.plugins.blame_command as blame_command
 
+import pytest
+
+import janisbot4.plugins.blame_command as blame_command
 from janisbot4.config import cfg
 from tests.unit.message_stub import MessageStub
 
@@ -14,7 +15,7 @@ async def test_metadata_is_returned_on_command(requests_mock):
     ]
     url = re.compile(cfg.get("QUOTE_API_URL") + "/irc_quote.*")
 
-    adapter = requests_mock.get(url, json=reply)  # nosec B113
+    adapter = requests_mock.get(url, json=reply)
 
     message_stub = MessageStub()
     message_stub.reply_to_message = MessageStub()
@@ -33,7 +34,7 @@ async def test_blame_api_is_not_called_without_reply(requests_mock):
     message_stub = MessageStub()
     message_stub.reply_to_message = None
 
-    adapter = requests_mock.post(url)  # nosec B113
+    adapter = requests_mock.post(url)
     await blame_command.index(message_stub)
 
     assert adapter.called is False

@@ -1,8 +1,8 @@
+from urllib.parse import quote as urlquote
+
 import requests
 
-from urllib.parse import quote as urlquote
 from janisbot4.config import cfg
-
 
 QUOTE_API_TOKEN = cfg.get("QUOTE_API_TOKEN")
 QUOTE_API_URL = cfg.get("QUOTE_API_URL")
@@ -18,12 +18,12 @@ def quotelast(channel, quote, victim=None, adder=None):
     requests.post(
         f"{QUOTE_API_URL}/rpc/quotelast",
         headers=HEADERS,
-        json=dict(
-            a_channel=channel,
-            a_victim=victim,
-            a_adder=adder,
-            a_quote=quote,
-        ),
+        json={
+            "a_channel": channel,
+            "a_victim": victim,
+            "a_adder": adder,
+            "a_quote": quote,
+        },
         timeout=REQUEST_TIMEOUT,
     )
 

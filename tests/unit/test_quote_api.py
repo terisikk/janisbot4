@@ -32,7 +32,7 @@ def test_quote_can_be_parsed_from_response(requests_mock):
     response = [{"quote": test_quote}]
     url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
-    adapter = requests_mock.get(url, json=response)  # nosec B113
+    adapter = requests_mock.get(url, json=response)
     response = quote_api.get_random_quote()
 
     assert adapter.called
@@ -44,7 +44,7 @@ def test_no_exception_with_empty_response(requests_mock):
     response = [{}]
     url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
-    adapter = requests_mock.get(url, json=response)  # nosec B113
+    adapter = requests_mock.get(url, json=response)
     response = quote_api.get_random_quote()
 
     assert adapter.called
@@ -54,7 +54,7 @@ def test_no_exception_with_empty_response(requests_mock):
 def test_quotelast_can_be_called(requests_mock):
     url = cfg.get("QUOTE_API_URL") + "/rpc/quotelast"
 
-    adapter = requests_mock.post(url)  # nosec B113
+    adapter = requests_mock.post(url)
     quote_api.quotelast("test_channel", "test quote", "test_victim", "test_adder")
 
     assert adapter.called
@@ -74,7 +74,7 @@ def test_quote_user_can_be_parsed_from_response(requests_mock):
 
     url = re.compile(cfg.get("QUOTE_API_URL") + "/irc_quote.*")
 
-    adapter = requests_mock.get(url, json=response)  # nosec B113
+    adapter = requests_mock.get(url, json=response)
     response = quote_api.get_quote_metadata(test_quote)
 
     assert adapter.called

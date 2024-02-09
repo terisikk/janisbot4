@@ -1,7 +1,6 @@
-import janisbot4.plugins
-
 from importlib.machinery import FileFinder
 
+import janisbot4.plugins
 from janisbot4.plugin_loader import load_plugin, load_plugins, register_plugins
 from tests.unit.dispatcher_stub import DispatcherStub
 

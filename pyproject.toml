@@ -1,6 +1,3 @@
-[tool.black]
-line-length = 120
-
 [tool.ruff]
 line-length = 120
 exclude = [
@@ -10,8 +7,22 @@ exclude = [
   ".devcontainer",
   "__pycache__",
   ".pytest_cache",
-  ".github"
+  ".github",
 ]
+
+[tool.ruff.lint]
+select = [
+  "F",
+  "E",
+  "I",
+  "S",
+  "C",
+  "B",
+  "A",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
 
 [tool.pytest.ini_options]
 filterwarnings = [
@@ -62,18 +73,12 @@ coverage = "^7.2.1"
 requests-mock = "^1.10.0"
 pytest-asyncio = "^0.20.3"
 pytest = "^7.2.2"
-ruff = "^0.0.254"
+pytest-cov = "^4.1.0"
+ruff = "^0.2.1"
 black = "^23.1.0"
-bandit = "^1.7.5"
 telethon = "^1.27.0"
 pytest-dotenv = "^0.5.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.bandit]
-exclude_dirs = [".venv"]
-
-[tool.bandit.assert_used]
-skips = ['*/test_*.py'] # Pytest uses asserts

@@ -1,7 +1,7 @@
-from janisbot4.bot import create_bot, get_api_server, PRODUCTION, TEST
-
 from aiogram import Bot
 from aiogram.dispatcher import Dispatcher
+
+from janisbot4.bot import PRODUCTION, TEST, create_bot, get_api_server
 
 
 def test_create_bot_can_be_created():

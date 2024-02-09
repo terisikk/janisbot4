@@ -1,6 +1,6 @@
 import pytest
-import janisbot4.plugins.quote_message as quote_message
 
+import janisbot4.plugins.quote_message as quote_message
 from janisbot4.config import cfg
 from tests.unit.message_stub import MessageStub
 
@@ -11,7 +11,7 @@ async def test_quote_is_returned_on_message(requests_mock):
     reply = [{"quote": expected}]
     url = cfg.get("QUOTE_API_URL") + "/random_quotes?limit=1"
 
-    requests_mock.get(url, json=reply)  # nosec B113
+    requests_mock.get(url, json=reply)
 
     message_stub = MessageStub()
 

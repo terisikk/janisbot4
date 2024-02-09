@@ -28,13 +28,14 @@ jobs:
     name: "Install and cache requirements"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: pipx install poetry==1.4.0
+      - uses: actions/checkout@v4
+      - run: pipx install poetry==1.7.1
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           cache: 'poetry'
       - run: poetry install && poetry build
+
   unit-test:
     name: "Run unit tests with coverage"
     needs:
@@ -44,57 +45,30 @@ jobs:
     env:
       JANISBOT_CONFIG: ${{ github.workspace }}/conf/default.conf
     steps:
-      - uses: actions/checkout@v3
-      - run: pipx install poetry==1.4.0
+      - uses: actions/checkout@v4
+      - run: pipx install poetry==1.7.1
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           cache: 'poetry'
       - run: poetry install
-      - run: poetry run coverage run
-      - run: poetry run coverage report
+      - run: make test
+
   static-analysis:
     name: "Static analysis with ruff"
     needs:
       - build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: pipx install poetry==1.4.0
+      - uses: actions/checkout@v4
+      - run: pipx install poetry==1.7.1
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           cache: 'poetry'
       - run: poetry install
-      - run: poetry run ruff check .
-  security-analysis:
-    name: "Security analysis with bandit"
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: pipx install poetry==1.4.0
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'poetry'
-      - run: poetry install
-      - run: poetry run bandit -c pyproject.toml -r .
-  formatting:
-    name: "Check formatting with black"
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: pipx install poetry==1.4.0
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-          cache: 'poetry'
-      - run: poetry install
-      - run: poetry run black --check .
+      - run: make lint
+
   end-to-end:
     name: "End to end tests"
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
@@ -102,33 +76,37 @@ jobs:
       - build
       - unit-test
       - static-analysis
-      - security-analysis
-      - formatting
     runs-on: ubuntu-latest
     environment: Continuous Delivery
     steps:
-    - uses: actions/checkout@v3
-    - run: pipx install poetry==1.4.0
+    - uses: actions/checkout@v4
+    - run: pipx install poetry==1.7.1
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11'
         cache: 'poetry'
     - run: poetry install
     - run: poetry run pytest tests/e2e/
-  publish:
-    name: "Publish to registry"
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+
+  build-and-publish:
+    runs-on: ubuntu-latest
+    name: "Docker image build & publish"
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs:
     - end-to-end
-    runs-on: ubuntu-latest
-    environment: Continuous Delivery
     steps:
-    - uses: actions/checkout@v3
-    - name: Publish to Registry
-      uses: HurricanKai/Publish-Docker-Github-Action@1.12.1
-      with:
-        name: ${{ secrets.DOCKER_REGISTRY }}/janisbot4
-        registry: ${{ secrets.DOCKER_REGISTRY }}
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        cache: true
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v2
+        with:
+          # without scheme
+          registry: ${{ secrets.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: docker/setup-buildx-action@v2
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          cache-from: type=registry,ref={{ secrets.DOCKER_REGISTRY }}/janisbot4:latest
+          cache-to: type=inline
+          tags: ${{ secrets.DOCKER_REGISTRY }}/janisbot4:latest

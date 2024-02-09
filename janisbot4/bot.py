@@ -2,11 +2,11 @@ import logging
 import os
 
 from aiogram import Bot, Dispatcher
-from aiogram.dispatcher.filters.builtin import IDFilter
 from aiogram.bot.api import TelegramAPIServer
+from aiogram.dispatcher.filters.builtin import IDFilter
 
-from janisbot4.config import cfg
 from janisbot4 import plugin_loader, plugins
+from janisbot4.config import cfg
 
 TELEGRAM_API_TOKEN = cfg.get("TELEGRAM_API_TOKEN")
 USER_IDS = cfg.get("USER_IDS").split(",") if cfg.get("USER_IDS", None) else None

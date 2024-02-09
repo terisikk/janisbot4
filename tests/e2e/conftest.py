@@ -1,14 +1,12 @@
-import pytest_asyncio
-import socket
 import asyncio
+import socket
+
+import pytest_asyncio
+from telethon.sessions import StringSession
+from telethon.sync import TelegramClient
 
 import janisbot4.bot
-
-from telethon.sync import TelegramClient
-from telethon.sessions import StringSession
-
 from janisbot4.config import cfg
-
 
 TELEGRAM_API_DEV_ID = cfg.get("TELEGRAM_API_DEV_ID")
 TELEGRAM_API_DEV_HASH = cfg.get("TELEGRAM_API_DEV_HASH")

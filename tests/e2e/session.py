@@ -1,5 +1,5 @@
-from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
+from telethon.sync import TelegramClient
 
 # Run this file once to create a new session, if needed. This needs manual input from the user:
 # phone number and verification code.

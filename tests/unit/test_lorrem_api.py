@@ -7,7 +7,7 @@ def test_lorrem_can_be_parsed_from_response(requests_mock):
     response = {"lorrem": [test_quote]}
     url = cfg.get("LORREM_API_URL") + "/markovpy"
 
-    adapter = requests_mock.get(url, json=response)  # nosec B113
+    adapter = requests_mock.get(url, json=response)
     response = lorrem_api.get_random_lorr()
 
     assert adapter.called
@@ -19,7 +19,7 @@ def test_no_exception_with_empty_response(requests_mock):
     response = {}
     url = cfg.get("LORREM_API_URL") + "/markovpy"
 
-    adapter = requests_mock.get(url, json=response)  # nosec B113
+    adapter = requests_mock.get(url, json=response)
     response = lorrem_api.get_random_lorr()
 
     assert adapter.called

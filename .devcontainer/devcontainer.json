@@ -6,7 +6,7 @@
     "image": "mcr.microsoft.com/devcontainers/python:0-3.11-buster",
     "features": {
         "ghcr.io/devcontainers-contrib/features/poetry:2": {
-            "version": "1.4.0"
+            "version": "1.7.1"
         }
     },
     "customizations": {

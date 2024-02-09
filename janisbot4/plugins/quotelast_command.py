@@ -1,6 +1,5 @@
 from janisbot4.api.quote_api import quotelast
 
-
 COMMANDS = ["quotelast"]
 
 

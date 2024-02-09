@@ -1,8 +1,7 @@
 import pytest
 
-from janisbot4.plugins import quotelast_command
 from janisbot4.config import cfg
-
+from janisbot4.plugins import quotelast_command
 from tests.unit.message_stub import MessageStub
 
 
@@ -14,7 +13,7 @@ async def test_quotelast_api_is_called_from_handler(requests_mock):
     message_stub.reply_to_message = MessageStub()
     message_stub.reply_to_message.text = "test quote"
 
-    adapter = requests_mock.post(url)  # nosec B113
+    adapter = requests_mock.post(url)
     await quotelast_command.index(message_stub)
 
     assert adapter.called
@@ -27,7 +26,7 @@ async def test_quotelast_api_is_not_called_without_reply(requests_mock):
     message_stub = MessageStub()
     message_stub.reply_to_message = None
 
-    adapter = requests_mock.post(url)  # nosec B113
+    adapter = requests_mock.post(url)
     await quotelast_command.index(message_stub)
 
     assert adapter.called is False
@@ -52,7 +51,7 @@ async def test_quotelast_is_filtered_by_rules(requests_mock, text):
     message_stub.reply_to_message = MessageStub()
     message_stub.reply_to_message.text = text
 
-    adapter = requests_mock.post(url)  # nosec B113
+    adapter = requests_mock.post(url)
     await quotelast_command.index(message_stub)
 
     assert adapter.called is False

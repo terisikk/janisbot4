@@ -1,6 +1,7 @@
-import pkgutil
-import logging
 import importlib.util
+import logging
+import pkgutil
+
 import janisbot4.bot
 
 
