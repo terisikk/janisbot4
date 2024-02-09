@@ -97,7 +97,7 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     name: "Docker image build & publish"
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     needs:
       - build
       - unit-test
