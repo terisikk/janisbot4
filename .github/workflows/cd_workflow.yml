@@ -98,6 +98,8 @@ jobs:
     runs-on: ubuntu-latest
     name: "Docker image build & publish"
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      packages: write
     needs:
       - build
       - unit-test
@@ -107,14 +109,14 @@ jobs:
       - uses: docker/login-action@v2
         with:
           # without scheme
-          registry: ${{ secrets.DOCKER_REGISTRY }}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_TOKEN }}
       - uses: docker/setup-buildx-action@v2
       - uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          cache-from: type=registry,ref={{ secrets.DOCKER_REGISTRY }}/janisbot4:latest
+          cache-from: type=registry,ref=ghcr.io/terisikk/janisbot4:latest
           cache-to: type=inline
-          tags: ${{ secrets.DOCKER_REGISTRY }}/janisbot4:latest
+          tags: ghcr.io/terisikk/janisbot4:latest
